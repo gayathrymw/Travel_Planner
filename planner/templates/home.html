@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripMate - Your Ultimate Travel Planner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'planner/css/styles.css' %}">
+</head>
+
+<body class="bg-image">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-2">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand text-white fs-2" href="{% url 'home' %}">
+                <i class="fas fa-map-marked-alt me-2"></i>TripMate</a>
+            <div>
+                <a class="btn btn-secondary btn-sm me-2" href="{% url 'login' %}">
+                    <i class="fas fa-user me-2"></i>Login</a>
+                <a class="btn btn-primary btn-sm" href="{% url 'register' %}">
+                    <i class="fa-solid fa-user-plus me-2"></i>Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Welcome Section -->
+    <div class="container text-center welcome-section">
+        <h1 class="text-white mb-4 display-3">Welcome to TripMate !</h1>
+        <p class="text-white mb-5 fs-4">Plan, manage, and enjoy your trips with ease!</p>
+        <a class="btn btn-success" href="#featuresCarousel">
+            <i class="fa-solid fa-earth-americas me-2"></i>Explore</a>
+    </div>
+
+    <!-- Features Carousel -->
+    <div id="featuresCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+            <!-- Feature 1: Trip Planning -->
+            <div class="carousel-item active">
+                <div class="feature-image">
+                    <img src="{% static 'planner/images/trip-planning.jpg' %}" alt="Trip Planning Feature">
+                </div>
+                <div class="feature-content">
+                    <h3>Trip Planning</h3>
+                    <p>Easily create trips, add destinations, and organize detailed itineraries.</p>
+                </div>
+            </div>
+
+            <!-- Feature 2: Interactive Map -->
+            <div class="carousel-item">
+                <div class="feature-image">
+                    <img src="{% static 'planner/images/interractive-map.jpg' %}" alt="Interactive Map Feature">
+                </div>
+                <div class="feature-content">
+                    <h3>Interactive Map</h3>
+                    <p>Explore destinations with a map view, showing real-time landmarks and points of interest.</p>
+                </div>
+            </div>
+
+            <!-- Feature 3: Weather Updates -->
+            <div class="carousel-item">
+                <div class="feature-image">
+                    <img src="{% static 'planner/images/real-time.png' %}" alt="Real-Time Updates Feature">
+                </div>
+                <div class="feature-content">
+                    <h3>Real-Time Updates</h3>
+                    <p>Receive live weather updates on your destinations.</p>
+                </div>
+            </div>
+
+            <!-- Feature 4: Travel Recommendations -->
+            <div class="carousel-item">
+                <div class="feature-image">
+                    <img src="{% static 'planner/images/recommendation.jpg' %}" alt="Travel Recommendations Feature">
+                </div>
+                <div class="feature-content">
+                    <h3>Travel Recommendations</h3>
+                    <p>Get personalized recommendations on your next destination.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#featuresCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#featuresCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Smooth Scroll Script -->
+    <script>
+        document.querySelector('a[href="#featuresCarousel"]').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.querySelector('#featuresCarousel').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+    
+</body>
+</html>

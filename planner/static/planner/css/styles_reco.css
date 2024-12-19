@@ -1,0 +1,87 @@
+.bg-recommendation {
+    background: url('../images/recommendation-bg.png') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    min-height: 100vh;
+}
+
+.bg-recommendation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+body > * { 
+    position: relative;
+    z-index: 2;
+}
+
+.navbar {
+    padding: 0.5rem 1rem;
+    
+}
+
+.navbar-brand {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-right: 1rem;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.btn {
+    padding: 0.8rem 2rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.recommendation-container {
+    font-family: 'Poppins', sans-serif;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.destination-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 1.5rem;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.trip-recommendation {
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}

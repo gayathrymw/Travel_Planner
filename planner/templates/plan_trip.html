@@ -1,0 +1,136 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Trip - TripMate</title>
+    <script type="module" src="https://unpkg.com/@googlemaps/extended-component-library@0.6"></script>
+    <script src="{% static 'planner/js/index.js' %}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'planner/css/styles_plan.css' %}">
+</head>
+
+<body class="bg-tripmate">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-2">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand text-white fs-2" href="{% url 'home' %}">
+                <i class="fas fa-map-marked-alt me-2"></i>TripMate</a>
+        </div>
+        <div class="ms-auto">
+            <a class="btn btn-outline-light p-3" href="{% url 'profile' %}">
+                <i class="fa-solid fa-arrow-left me-2"></i>Back to Profile</a>
+        </div>
+    </nav>
+
+    <div class="container mt-4 p-0">
+        <h2 class="text-center mt-3 pb-4 text-white fs-1">Plan Your Dream Trip</h2>
+        <div class="p-5 rounded shadow-lg">
+            <div class="row g-3">
+                <!-- Map Section -->
+                <div class="col-md-6">
+                    <div id="map" class="rounded shadow" style="height: 890px;">
+                        <gmpx-api-loader key="AIzaSyDMgszEV3czaM4a35HGRSB4O21NhpmztY4"
+                            solution-channel="GMP_GE_mapsandplacesautocomplete_v1">
+                        </gmpx-api-loader>
+                        <gmp-map center="26.9124,75.7873" zoom="13" map-id="DEMO_MAP_ID">
+                            <div slot="control-block-start-inline-start" class="place-picker-container">
+                                <gmpx-place-picker placeholder="Enter destination"></gmpx-place-picker>
+                            </div>
+                            <gmp-advanced-marker></gmp-advanced-marker>
+                        </gmp-map>
+                    </div>
+                </div>
+
+                <!-- Trip Form Section -->
+                <div class="col-md-6">
+                    <form id="tripForm" method="POST" action="{% url 'plan_trip' %}"
+                        class="bg-white p-4 rounded shadow-lg">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="destination" class="form-label text-dark"><i
+                                    class="fas fa-globe me-2"></i>Destination</label>
+                            <input type="text" class="form-control" name="destination" id="destination"
+                                placeholder="Enter destination" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="start_date" class="form-label text-dark"><i
+                                        class="fas fa-calendar-alt me-2"></i>Start Date</label>
+                                <input type="date" class="form-control" name="start_date" id="start_date" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="end_date" class="form-label text-dark"><i
+                                        class="fas fa-calendar-check me-2"></i>End Date</label>
+                                <input type="date" class="form-control" name="end_date" id="end_date" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="activities" class="form-label text-dark"><i
+                                    class="fas fa-hiking me-2"></i>Activities</label>
+                            <input type="text" class="form-control" name="activities" id="activities"
+                                placeholder="Enter activities" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="budget" class="form-label text-dark"><i
+                                        class="fa-solid fa-indian-rupee-sign me-2"></i>Budget (Rs) </label>
+                                <input type="number" class="form-control" name="budget" id="budget"
+                                    placeholder="Enter approx. budget" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="accommodation" class="form-label text-dark"><i
+                                        class="fas fa-hotel me-2"></i>Accommodation</label>
+                                <input type="text" class="form-control" name="accommodation" id="accommodation"
+                                    placeholder="Enter accommodation details" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="transportation" class="form-label text-dark"><i
+                                    class="fas fa-bus me-2"></i>Transportation</label>
+                            <input type="text" class="form-control" name="transportation" id="transportation"
+                                placeholder="Enter transportation details (e.g., flight, train)" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="packingList" class="form-label text-dark"><i
+                                    class="fas fa-suitcase me-2"></i>Packing List</label>
+                            <textarea class="form-control" name="packing_list" id="packingList" rows="3"
+                                placeholder="Enter items to pack"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="travelNotes" class="form-label text-dark"><i
+                                    class="fas fa-sticky-note me-2"></i>Travel Notes</label>
+                            <textarea class="form-control" name="travel_notes" id="travelNotes" rows="3"
+                                placeholder="Additional travel notes"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-lg w-100">
+                            <i class="fas fa-save me-2"></i>Save Trip Details</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
